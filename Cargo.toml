@@ -1,0 +1,13 @@
+[package]
+name = "project1_1"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+utility = { path = "./src/utility" }
+iced = { git = "https://github.com/iced-rs/iced" }
+iced_native = "0.4"
+iced_style = "0.5"
+iced_core = "0.5"
