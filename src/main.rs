@@ -1,4 +1,4 @@
-use iced::widget::{button, container, row, text};
+use iced::widget::{button, container, row, column, text};
 use iced::{executor, Application, Command, Length, Settings};
 use iced::Color;
 // use iced::widget::column;
@@ -50,23 +50,31 @@ impl Application for App {
 
     fn view(&self) -> Element<Message> {
         container(
-            container(
-                row![
-                    button(text("primary"))
-                        .style(theme::Button::Primary)
-                        .on_press(Message::ButtonPress("primary".to_string())),
-                    button(text("secondary"))
-                        .style(theme::Button::Secondary)
-                        .on_press(Message::ButtonPress("secondary".to_string())),
-                    container(text("hello"))
-                        .style(theme::Container::WhiteBackground),
-                    text("The value of the button pressed is : "),
-                    text(&self.state.content)
-                ]
-                .spacing(10),
-            )
-            .padding(20)
-            .style(theme::Container::Bordered),
+            column![
+                container(
+                    row![
+                        button(text("primary"))
+                            .style(theme::Button::Primary)
+                            .on_press(Message::ButtonPress("primary".to_string())),
+                        button(text("secondary"))
+                            .style(theme::Button::Secondary)
+                            .on_press(Message::ButtonPress("secondary".to_string())),
+                    ]      
+                    .spacing(10),      
+                )
+                .padding(10)
+                ,
+                container(
+                    row![
+                        text("The value of the button pressed is : "),
+                        container(text(&self.state.content))                           
+                        .style(theme::Container::WhiteBackground)
+                        .padding(5),
+                    ]
+                    .spacing(10),
+                )
+                .padding(10)
+            ]
         )
         .width(Length::Fill)
         .height(Length::Fill)
@@ -136,6 +144,7 @@ mod theme {
                 },
                 Container::WhiteBackground => container::Appearance{
                     background: Some(iced::Background::Color(Color::from_rgba(0.8, 0.2, 0.3, 1.0))),
+                    border_radius: 3.0,
                     ..Default::default()
                 }
             }
