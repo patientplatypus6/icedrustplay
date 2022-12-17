@@ -1,0 +1,56 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  {{ message }}
+  {{ text }}
+  {{ textnewvalue }}
+  <p>Message is: {{ text }}</p>
+  <input v-model="text" placeholder="edit me" />
+  <div v-html="rawmessage"></div>
+  <div v-html="rawiframe"></div>
+</div>
+
+<script>
+  const { createApp } = Vue
+
+  createApp({
+    data() {
+      return {
+        message: 'Hello Vue!', 
+        text: "",
+        textnewvalue: "", 
+        rawmessage: "<h1>RAW MESSAGE</h1>", 
+        rawiframe: `<iframe class="embed-responsive-item" `+
+              `src="https://www.google.com"`+
+              `allowfullscreen></iframe>` +
+              `</div>`
+      }
+    }, 
+    methods: {
+      updateIframe: function(value){
+        this.rawiframe =  `<iframe class="embed-responsive-item" `+
+              `src="`+value+`"`+
+              `allowfullscreen></iframe>` +
+              `</div>`
+      }
+    },
+    // methods: {
+    //   updateIframe(){
+    //     this.rawiframe =  `<iframe class="embed-responsive-item" `+
+    //           `src="`+text+`"`+
+    //           `allowfullscreen></iframe>` +
+    //           `</div>`
+    //   }
+    // }, 
+    watch: {
+      text: function(newvalue){
+        console.log("inside text has changed watcher")
+        this.textnewvalue = newvalue;
+        this.updateIframe(newvalue);
+        // console.log("newvalue: ", newvalue)
+        // console.log("oldvalue: ", oldvalue)
+        // this.updateIframe()
+      }
+    }
+  }).mount('#app')
+</script>

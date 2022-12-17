@@ -7,7 +7,12 @@ edition = "2021"
 
 [dependencies]
 utility = { path = "./src/utility" }
-iced = { git = "https://github.com/iced-rs/iced" }
+iced = "0.6.0"
 iced_native = "0.4"
 iced_style = "0.5"
 iced_core = "0.5"
+reqwest = { version = "0.11", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+webassembly = "0.8"
+wry = "0.23.4"
+ipc-channel = "0.16.0"

@@ -1,0 +1,1 @@
+/Users/peterweyand/Code/rustprojects/project1.1/project1_1/wasm-lib/target/wasm32-unknown-unknown/release/hello_wasm.wasm: /Users/peterweyand/Code/rustprojects/project1.1/project1_1/wasm-lib/src/lib.rs
